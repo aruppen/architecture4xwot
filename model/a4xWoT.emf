@@ -1,0 +1,107 @@
+@namespace(uri="http://diuf.unifr.ch/softeng", prefix="xwot")
+package xwot;
+
+class Entity {
+  attr String name;
+  val PhysicalEntity PhysicalEntity;
+  val VirtualEntity[1] VirtualEntity;
+}
+
+abstract class PhysicalEntity {
+  transient attr int entityId;
+  attr String name;
+}
+
+class Device extends PhysicalEntity {
+  val PhysicalEntity[+] Component;
+}
+
+class Tag extends PhysicalEntity {
+}
+
+class Sensor extends PhysicalEntity {
+}
+
+class Actuator extends PhysicalEntity {
+}
+
+abstract class VirtualEntity {
+  unique attr int entityId;
+  attr String name;
+  attr String uri;
+  val Method[*] methods;
+  val VEntityParam[*] params;
+}
+
+class Resource extends VirtualEntity {
+  val VirtualEntity[+] Resource;
+}
+
+class SensorResource extends Resource {
+}
+
+class ActuatorResource extends Resource {
+}
+
+class ContextResource extends Resource {
+}
+
+class ServiceResource extends Resource {
+}
+
+class PublisherResource extends VirtualEntity {
+}
+
+class Method{
+   attr String name;
+   attr MethodOperation method;
+   attr MethodOutput[*] output;
+   attr MethodInput input;
+   val MethodParam[*] params;
+}
+
+enum MethodOperation
+{
+	GET;
+	PUT;
+	POST;
+	DELETE;
+}
+
+enum MethodOutput
+{
+	XMLJSON;
+	TEXT;
+	HTML;
+	OTHER;  
+	NONE;  
+}
+
+enum MethodInput
+{
+   XMLJSON;
+   MULTIPARTRELATED;
+   FORM;
+   NONE;
+}
+
+abstract class Param
+{
+   attr String name;
+   attr String type;
+}
+
+class VEntityParam extends Param
+{
+   attr MethodStyle style;
+}
+class MethodParam extends Param
+{
+   attr MethodStyle style;
+}
+
+enum MethodStyle
+{
+   TEMPLATE=0;
+   QUERY=1;
+}

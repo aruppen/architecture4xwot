@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="xwot" nsURI="http://diuf.unifr.ch/softeng" nsPrefix="xwot">
+  <eClassifiers xsi:type="ecore:EClass" name="Entity">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="PhysicalEntity" eType="#//PhysicalEntity"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="VirtualEntity" lowerBound="1"
+        eType="#//VirtualEntity" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PhysicalEntity" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="entityId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        transient="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Device" eSuperTypes="#//PhysicalEntity">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Component" lowerBound="1"
+        upperBound="-1" eType="#//PhysicalEntity" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Tag" eSuperTypes="#//PhysicalEntity"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Sensor" eSuperTypes="#//PhysicalEntity"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Actuator" eSuperTypes="#//PhysicalEntity"/>
+  <eClassifiers xsi:type="ecore:EClass" name="VirtualEntity" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="entityId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="methods" upperBound="-1"
+        eType="#//Method" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1"
+        eType="#//VEntityParam" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Resource" eSuperTypes="#//VirtualEntity">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Resource" lowerBound="1"
+        upperBound="-1" eType="#//VirtualEntity" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SensorResource" eSuperTypes="#//Resource"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ActuatorResource" eSuperTypes="#//Resource"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ContextResource" eSuperTypes="#//Resource"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ServiceResource" eSuperTypes="#//Resource"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PublisherResource" eSuperTypes="#//VirtualEntity"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Method">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="method" eType="#//MethodOperation"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="output" upperBound="-1"
+        eType="#//MethodOutput"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="input" eType="#//MethodInput"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1"
+        eType="#//MethodParam" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="MethodOperation">
+    <eLiterals name="GET"/>
+    <eLiterals name="PUT" value="1"/>
+    <eLiterals name="POST" value="2"/>
+    <eLiterals name="DELETE" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="MethodOutput">
+    <eLiterals name="XMLJSON"/>
+    <eLiterals name="TEXT" value="1"/>
+    <eLiterals name="HTML" value="2"/>
+    <eLiterals name="OTHER" value="3"/>
+    <eLiterals name="NONE" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="MethodInput">
+    <eLiterals name="XMLJSON"/>
+    <eLiterals name="MULTIPARTRELATED" value="1"/>
+    <eLiterals name="FORM" value="2"/>
+    <eLiterals name="NONE" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Param" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VEntityParam" eSuperTypes="#//Param">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="style" eType="#//MethodStyle"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MethodParam" eSuperTypes="#//Param">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="style" eType="#//MethodStyle"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="MethodStyle">
+    <eLiterals name="TEMPLATE"/>
+    <eLiterals name="QUERY" value="1"/>
+  </eClassifiers>
+</ecore:EPackage>
