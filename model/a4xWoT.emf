@@ -16,6 +16,14 @@ class Device extends PhysicalEntity {
   val PhysicalEntity[+] Component;
 }
 
+class PDevice extends Device {
+	
+}
+
+class VDevice extends Device {
+	
+}
+
 class Tag extends PhysicalEntity {
 }
 
@@ -35,6 +43,14 @@ abstract class VirtualEntity {
 
 class Resource extends VirtualEntity {
   val VirtualEntity[+] Resource;
+}
+
+class PResource extends Resource {
+	
+}
+
+class VRresource extends Resource {
+	
 }
 
 class SensorResource extends Resource {

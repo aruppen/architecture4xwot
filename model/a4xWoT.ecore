@@ -17,6 +17,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="Component" lowerBound="1"
         upperBound="-1" eType="#//PhysicalEntity" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PDevice" eSuperTypes="#//Device"/>
+  <eClassifiers xsi:type="ecore:EClass" name="VDevice" eSuperTypes="#//Device"/>
   <eClassifiers xsi:type="ecore:EClass" name="Tag" eSuperTypes="#//PhysicalEntity"/>
   <eClassifiers xsi:type="ecore:EClass" name="Sensor" eSuperTypes="#//PhysicalEntity"/>
   <eClassifiers xsi:type="ecore:EClass" name="Actuator" eSuperTypes="#//PhysicalEntity"/>
@@ -33,6 +35,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="Resource" lowerBound="1"
         upperBound="-1" eType="#//VirtualEntity" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PResource" eSuperTypes="#//Resource"/>
+  <eClassifiers xsi:type="ecore:EClass" name="VRresource" eSuperTypes="#//Resource"/>
   <eClassifiers xsi:type="ecore:EClass" name="SensorResource" eSuperTypes="#//Resource"/>
   <eClassifiers xsi:type="ecore:EClass" name="ActuatorResource" eSuperTypes="#//Resource"/>
   <eClassifiers xsi:type="ecore:EClass" name="ContextResource" eSuperTypes="#//Resource"/>
