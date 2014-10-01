@@ -12,17 +12,11 @@ abstract class PhysicalEntity {
   attr String name;
 }
 
-abstract class Device extends PhysicalEntity {
+class Device extends PhysicalEntity {
   val PhysicalEntity[+] Component;
+  attr boolean composed;
 }
 
-class EntityDevice extends Device {
-	
-}
-
-class NodeDevice extends Device {
-	
-}
 
 class Tag extends PhysicalEntity {
 }
@@ -41,28 +35,22 @@ abstract class VirtualEntity {
   val VEntityParam[*] params;
 }
 
-abstract class Resource extends VirtualEntity {
+class Resource extends VirtualEntity {
   val VirtualEntity[+] Resource;
+  attr boolean composed;
 }
 
-class EntityResource extends Resource {
-	
+
+class SensorResource extends Resource {
 }
 
-class NodeResource extends Resource {
-	
+class ActuatorResource extends Resource {
 }
 
-class SensorResource extends VirtualEntity {
+class ContextResource extends Resource {
 }
 
-class ActuatorResource extends VirtualEntity {
-}
-
-class ContextResource extends VirtualEntity {
-}
-
-class ServiceResource extends VirtualEntity {
+class ServiceResource extends Resource {
 }
 
 class PublisherResource extends VirtualEntity {
