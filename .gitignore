@@ -1,3 +1,5 @@
+**/*.ecore*
+**/*.genmodel
 bin/
 src/**/
-
+.settings/
