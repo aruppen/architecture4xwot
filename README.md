@@ -16,3 +16,5 @@ first element until you see the Xwot element.
 
 Right click on the Xwot element -> generate all. This generate the
 eclipse plugins.
+
+Right click on the src folder and choose Export... -> Deployable plug-ins und fragments -> select all the projects and export. This creates the jar files which can then be added to another Eclipse intstalltion to provide the xWoT editor.
